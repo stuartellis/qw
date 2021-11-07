@@ -1,0 +1,32 @@
+{
+    "ado": {
+        "rest": {
+            "get": {
+                "pipeline": {
+                    "identifier": "pipelineId",
+                    "index": "https://dev.azure.com/{organization}/{project}/_apis/pipelines?api-version=6.1-preview.1",
+                    "item": "https://dev.azure.com/{organization}/{project}/_apis/pipelines/{pipelineId}?api-version=6.1-preview.1",
+                    "plural": "pipelines"
+                },
+                "release": {
+                    "identifier": "releaseId",
+                    "index": "https://vsrm.dev.azure.com/{organization}/{project}/_apis/release/releases?api-version=6.0",
+                    "item": "https://vsrm.dev.azure.com/{organization}/{project}/_apis/release/releases/{releaseId}?api-version=6.0",
+                    "plural": "releases"
+                },
+                "repo": {
+                    "identifier": "repositoryId",
+                    "index": "https://dev.azure.com/{organization}/{project}/_apis/git/repositories?api-version=6.0&includeLinks=true",
+                    "item": "https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}??api-version=6.0",
+                    "plural": "repos"
+                }
+            }
+        },
+        "git": {
+            "https": "https://dev.azure.com/{organization}/{project}/_git/{repoName}"
+        },
+        "schema": {
+            "version": "0.1.0"
+        }
+    }
+}

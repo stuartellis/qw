@@ -1,0 +1,208 @@
+[
+    {
+        "scope": "https://dev.azure.com:443",
+        "method": "GET",
+        "path": "/sjellis/sje-ado-labs/_apis/git/repositories?api-version=6.0&includeLinks=true",
+        "body": "",
+        "status": 200,
+        "response": {
+            "value": [
+                {
+                    "id": "b1e42bd0-49f6-4b57-8ade-5e1c25fbe8a2",
+                    "name": "nuklear",
+                    "url": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/b1e42bd0-49f6-4b57-8ade-5e1c25fbe8a2",
+                    "project": {
+                        "id": "83cd6f64-aa0d-4908-b163-3e3136cf8a97",
+                        "name": "sje-ado-labs",
+                        "description": "SJE Azure DevOps Labs",
+                        "url": "https://dev.azure.com/sjellis/_apis/projects/83cd6f64-aa0d-4908-b163-3e3136cf8a97",
+                        "state": "wellFormed",
+                        "revision": 69,
+                        "visibility": "private",
+                        "lastUpdateTime": "2020-12-28T14:08:04.75Z"
+                    },
+                    "defaultBranch": "refs/heads/master",
+                    "size": 44984,
+                    "remoteUrl": "https://sjellis@dev.azure.com/sjellis/sje-ado-labs/_git/nuklear",
+                    "sshUrl": "git@ssh.dev.azure.com:v3/sjellis/sje-ado-labs/nuklear",
+                    "webUrl": "https://dev.azure.com/sjellis/sje-ado-labs/_git/nuklear",
+                    "_links": {
+                        "self": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/b1e42bd0-49f6-4b57-8ade-5e1c25fbe8a2"
+                        },
+                        "project": {
+                            "href": "vstfs:///Classification/TeamProject/83cd6f64-aa0d-4908-b163-3e3136cf8a97"
+                        },
+                        "web": {
+                            "href": "https://dev.azure.com/sjellis/sje-ado-labs/_git/nuklear"
+                        },
+                        "ssh": {
+                            "href": "git@ssh.dev.azure.com:v3/sjellis/sje-ado-labs/nuklear"
+                        },
+                        "commits": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/b1e42bd0-49f6-4b57-8ade-5e1c25fbe8a2/commits"
+                        },
+                        "refs": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/b1e42bd0-49f6-4b57-8ade-5e1c25fbe8a2/refs"
+                        },
+                        "pullRequests": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/b1e42bd0-49f6-4b57-8ade-5e1c25fbe8a2/pullRequests"
+                        },
+                        "items": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/b1e42bd0-49f6-4b57-8ade-5e1c25fbe8a2/items"
+                        },
+                        "pushes": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/b1e42bd0-49f6-4b57-8ade-5e1c25fbe8a2/pushes"
+                        }
+                    },
+                    "isDisabled": false
+                },
+                {
+                    "id": "09dce0b9-22c9-42a6-b397-ad62c606a240",
+                    "name": "sje-ado-labs",
+                    "url": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/09dce0b9-22c9-42a6-b397-ad62c606a240",
+                    "project": {
+                        "id": "83cd6f64-aa0d-4908-b163-3e3136cf8a97",
+                        "name": "sje-ado-labs",
+                        "description": "SJE Azure DevOps Labs",
+                        "url": "https://dev.azure.com/sjellis/_apis/projects/83cd6f64-aa0d-4908-b163-3e3136cf8a97",
+                        "state": "wellFormed",
+                        "revision": 69,
+                        "visibility": "private",
+                        "lastUpdateTime": "2020-12-28T14:08:04.75Z"
+                    },
+                    "size": 0,
+                    "remoteUrl": "https://sjellis@dev.azure.com/sjellis/sje-ado-labs/_git/sje-ado-labs",
+                    "sshUrl": "git@ssh.dev.azure.com:v3/sjellis/sje-ado-labs/sje-ado-labs",
+                    "webUrl": "https://dev.azure.com/sjellis/sje-ado-labs/_git/sje-ado-labs",
+                    "_links": {
+                        "self": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/09dce0b9-22c9-42a6-b397-ad62c606a240"
+                        },
+                        "project": {
+                            "href": "vstfs:///Classification/TeamProject/83cd6f64-aa0d-4908-b163-3e3136cf8a97"
+                        },
+                        "web": {
+                            "href": "https://dev.azure.com/sjellis/sje-ado-labs/_git/sje-ado-labs"
+                        },
+                        "ssh": {
+                            "href": "git@ssh.dev.azure.com:v3/sjellis/sje-ado-labs/sje-ado-labs"
+                        },
+                        "commits": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/09dce0b9-22c9-42a6-b397-ad62c606a240/commits"
+                        },
+                        "refs": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/09dce0b9-22c9-42a6-b397-ad62c606a240/refs"
+                        },
+                        "pullRequests": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/09dce0b9-22c9-42a6-b397-ad62c606a240/pullRequests"
+                        },
+                        "items": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/09dce0b9-22c9-42a6-b397-ad62c606a240/items"
+                        },
+                        "pushes": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/09dce0b9-22c9-42a6-b397-ad62c606a240/pushes"
+                        }
+                    },
+                    "isDisabled": false
+                },
+                {
+                    "id": "2b7de62f-781c-44b5-9ff8-e04b67045130",
+                    "name": "multiplicity",
+                    "url": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/2b7de62f-781c-44b5-9ff8-e04b67045130",
+                    "project": {
+                        "id": "83cd6f64-aa0d-4908-b163-3e3136cf8a97",
+                        "name": "sje-ado-labs",
+                        "description": "SJE Azure DevOps Labs",
+                        "url": "https://dev.azure.com/sjellis/_apis/projects/83cd6f64-aa0d-4908-b163-3e3136cf8a97",
+                        "state": "wellFormed",
+                        "revision": 69,
+                        "visibility": "private",
+                        "lastUpdateTime": "2020-12-28T14:08:04.75Z"
+                    },
+                    "defaultBranch": "refs/heads/main",
+                    "size": 32637,
+                    "remoteUrl": "https://sjellis@dev.azure.com/sjellis/sje-ado-labs/_git/multiplicity",
+                    "sshUrl": "git@ssh.dev.azure.com:v3/sjellis/sje-ado-labs/multiplicity",
+                    "webUrl": "https://dev.azure.com/sjellis/sje-ado-labs/_git/multiplicity",
+                    "_links": {
+                        "self": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/2b7de62f-781c-44b5-9ff8-e04b67045130"
+                        },
+                        "project": {
+                            "href": "vstfs:///Classification/TeamProject/83cd6f64-aa0d-4908-b163-3e3136cf8a97"
+                        },
+                        "web": {
+                            "href": "https://dev.azure.com/sjellis/sje-ado-labs/_git/multiplicity"
+                        },
+                        "ssh": {
+                            "href": "git@ssh.dev.azure.com:v3/sjellis/sje-ado-labs/multiplicity"
+                        },
+                        "commits": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/2b7de62f-781c-44b5-9ff8-e04b67045130/commits"
+                        },
+                        "refs": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/2b7de62f-781c-44b5-9ff8-e04b67045130/refs"
+                        },
+                        "pullRequests": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/2b7de62f-781c-44b5-9ff8-e04b67045130/pullRequests"
+                        },
+                        "items": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/2b7de62f-781c-44b5-9ff8-e04b67045130/items"
+                        },
+                        "pushes": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/git/repositories/2b7de62f-781c-44b5-9ff8-e04b67045130/pushes"
+                        }
+                    },
+                    "isDisabled": false
+                }
+            ],
+            "count": 3
+        },
+        "rawHeaders": [
+            "Cache-Control",
+            "no-cache, no-store, must-revalidate",
+            "Pragma",
+            "no-cache",
+            "Transfer-Encoding",
+            "chunked",
+            "Content-Type",
+            "application/json; charset=utf-8; api-version=6.0",
+            "Expires",
+            "-1",
+            "P3P",
+            "CP=\"CAO DSP COR ADMa DEV CONo TELo CUR PSA PSD TAI IVDo OUR SAMi BUS DEM NAV STA UNI COM INT PHY ONL FIN PUR LOC CNT\"",
+            "Set-Cookie",
+            "VstsSession=%7B%22PersistentSessionId%22%3A%228f488aab-edbd-43b6-af53-b3b13ee9de84%22%2C%22PendingAuthenticationSessionId%22%3A%2200000000-0000-0000-0000-000000000000%22%2C%22CurrentAuthenticationSessionId%22%3A%2200000000-0000-0000-0000-000000000000%22%2C%22SignInState%22%3A%7B%7D%7D;SameSite=None; domain=.dev.azure.com; expires=Fri, 14-Oct-2022 06:14:34 GMT; path=/; secure; HttpOnly",
+            "X-TFS-ProcessId",
+            "fc0232f6-3c28-45a4-ae7d-a8fcb0e1523e",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "ActivityId",
+            "ba1d6fda-bf0e-4187-8114-fa295e667d68",
+            "X-TFS-Session",
+            "ba1d6fda-bf0e-4187-8114-fa295e667d68",
+            "X-VSS-E2EID",
+            "ba1d6fda-bf0e-4187-8114-fa295e667d68",
+            "X-VSS-SenderDeploymentId",
+            "5206dd6d-9024-e796-273d-d039bb0efc34",
+            "X-VSS-UserData",
+            "5141a0fe-f4ea-4426-b5e3-6dbb9657068e:ms@stuartellis.name",
+            "X-FRAME-OPTIONS",
+            "SAMEORIGIN",
+            "Request-Context",
+            "appId=cid-v1:6c6b0002-6938-437d-b623-7a93d8b21070",
+            "Access-Control-Expose-Headers",
+            "Request-Context",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Cache",
+            "CONFIG_NOCACHE",
+            "X-MSEdge-Ref",
+            "Ref A: 1BBCE1EC4A924B5682F76F04C93216F7 Ref B: LON21EDGE1418 Ref C: 2021-10-14T06:14:34Z",
+            "Date",
+            "Thu, 14 Oct 2021 06:14:33 GMT"
+        ],
+        "responseIsBinary": false
+    }
+]

@@ -1,0 +1,89 @@
+[
+    {
+        "scope": "https://dev.azure.com:443",
+        "method": "GET",
+        "path": "/sjellis/sje-ado-labs/_apis/pipelines?api-version=6.1-preview.1",
+        "body": "",
+        "status": 200,
+        "response": {
+            "count": 2,
+            "value": [
+                {
+                    "_links": {
+                        "self": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/pipelines/23?revision=1"
+                        },
+                        "web": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_build/definition?definitionId=23"
+                        }
+                    },
+                    "url": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/pipelines/23?revision=1",
+                    "id": 23,
+                    "revision": 1,
+                    "name": "multiplicity",
+                    "folder": "\\Infrastructure"
+                },
+                {
+                    "_links": {
+                        "self": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/pipelines/9?revision=3"
+                        },
+                        "web": {
+                            "href": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_build/definition?definitionId=9"
+                        }
+                    },
+                    "url": "https://dev.azure.com/sjellis/83cd6f64-aa0d-4908-b163-3e3136cf8a97/_apis/pipelines/9?revision=3",
+                    "id": 9,
+                    "revision": 3,
+                    "name": "nuklear",
+                    "folder": "\\Infrastructure"
+                }
+            ]
+        },
+        "rawHeaders": [
+            "Cache-Control",
+            "no-cache, no-store, must-revalidate",
+            "Pragma",
+            "no-cache",
+            "Content-Length",
+            "856",
+            "Content-Type",
+            "application/json; charset=utf-8; api-version=6.1-preview.1",
+            "Expires",
+            "-1",
+            "P3P",
+            "CP=\"CAO DSP COR ADMa DEV CONo TELo CUR PSA PSD TAI IVDo OUR SAMi BUS DEM NAV STA UNI COM INT PHY ONL FIN PUR LOC CNT\"",
+            "Set-Cookie",
+            "VstsSession=%7B%22PersistentSessionId%22%3A%22db9aae86-686d-457d-a0b6-a8661eface3b%22%2C%22PendingAuthenticationSessionId%22%3A%2200000000-0000-0000-0000-000000000000%22%2C%22CurrentAuthenticationSessionId%22%3A%2200000000-0000-0000-0000-000000000000%22%2C%22SignInState%22%3A%7B%7D%7D;SameSite=None; domain=.dev.azure.com; expires=Sun, 23-Oct-2022 14:03:39 GMT; path=/; secure; HttpOnly",
+            "X-TFS-ProcessId",
+            "c76ca39c-586e-473d-acf4-7e6499d18123",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "ActivityId",
+            "581d166f-0c0d-4ca4-bd4b-d3734e2d0741",
+            "X-TFS-Session",
+            "581d166f-0c0d-4ca4-bd4b-d3734e2d0741",
+            "X-VSS-E2EID",
+            "581d166f-0c0d-4ca4-bd4b-d3734e2d0741",
+            "X-VSS-SenderDeploymentId",
+            "5206dd6d-9024-e796-273d-d039bb0efc34",
+            "X-VSS-UserData",
+            "5141a0fe-f4ea-4426-b5e3-6dbb9657068e:ms@stuartellis.name",
+            "X-FRAME-OPTIONS",
+            "SAMEORIGIN",
+            "Request-Context",
+            "appId=cid-v1:6c6b0002-6938-437d-b623-7a93d8b21070",
+            "Access-Control-Expose-Headers",
+            "Request-Context",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Cache",
+            "CONFIG_NOCACHE",
+            "X-MSEdge-Ref",
+            "Ref A: 58F02B2CF9AD4EF8A77B3B143B8E6499 Ref B: LON21EDGE0714 Ref C: 2021-10-23T14:03:39Z",
+            "Date",
+            "Sat, 23 Oct 2021 14:03:39 GMT"
+        ],
+        "responseIsBinary": false
+    }
+]

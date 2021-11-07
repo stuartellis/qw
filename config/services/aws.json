@@ -1,0 +1,10 @@
+{
+    "aws": {
+        "defaults": {
+            "region": "eu-west-1"
+        },
+        "s3": {
+            "archiveBucket": "sje-test-archive-eu-west-1"
+        }
+    }
+}
