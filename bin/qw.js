@@ -10,6 +10,7 @@ program
 program
   .command('ado', 'Azure DevOps')
   .command('cfn', 'AWS CloudFormation')
+  .command('email', 'Emails')
   .command('repo', 'Git repositories')
   .command('s3', 'AWS S3');
 

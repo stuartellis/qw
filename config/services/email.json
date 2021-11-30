@@ -1,0 +1,11 @@
+{
+    "email": {
+        "smtp": {
+            "default": {
+                "host": "mail.example",
+                "port": 587,
+                "secure": false
+            }
+        }
+    }
+}
