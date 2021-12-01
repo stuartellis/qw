@@ -14,8 +14,8 @@ function credentials() {
   const username = process.env['SMTP_USERNAME'] || process.env['USER'];
   const password = process.env['SMTP_PASSWORD'];
   return {
-    username: username, 
-    password: password
+    user: username, 
+    pass: password
   };
 }
 

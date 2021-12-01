@@ -14,6 +14,12 @@ CLI for operations
 
 ## Usage
 
+Set these environment variables:
+
+- AZURE_DEVOPS_EXT_PAT - PAT for Azure DevOps
+- SMTP_USERNAME - Username for SMTP service 
+- SMTP_PASSWORD - Password for SMTP service
+
 Run this command to set the available subcommands:
 
     qw --help
