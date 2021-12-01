@@ -2,9 +2,9 @@
     "email": {
         "smtp": {
             "default": {
-                "host": "mail.example",
-                "port": 587,
-                "secure": false
+                "host": "smtp.fastmail.com",
+                "port": 465,
+                "secure": true
             }
         }
     }

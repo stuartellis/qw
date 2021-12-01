@@ -14,13 +14,6 @@ async function run() {
   const options = program.opts();
   
   try {
-    let profile = mailer.smtp.default;
-    if (options.profile) {
-      const extPrFile = await fs.readFile(options.profile);
-      const extPrJson = JSON.parse(extPrFile);
-      Object.assign(profile, extPrJson);
-    } 
-
     let message = {};
     if (options.json) {
       const extMsgFile = await fs.readFile(options.json);
@@ -28,12 +21,21 @@ async function run() {
       Object.assign(message, extMsgJson);
     } 
 
-    Object.assign(profile, options);
-    Object.assign(message, options);
+    ['bcc', 'cc', 'from', 'subject', 'text', 'to'].forEach((opt) => {
+      if (options[opt]) {
+        message[opt] = options[opt];
+      }
+    });
+
+    let profile = mailer.smtp.default;
+    if (options.profile) {
+      const extPrFile = await fs.readFile(options.profile);
+      const extPrJson = JSON.parse(extPrFile);
+      Object.assign(profile, extPrJson);
+    } 
     profile.auth = smtp.credentials();
 
     const transport = smtp.getTransport(profile);
-    console.log(message);
     await smtp.sendSmtp(transport, message);
 
   } catch(err) {
