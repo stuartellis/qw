@@ -1,0 +1,46 @@
+variables:
+  - template: .azure-pipelines/variables.yml
+
+name: ${{variables.name}}-$(Date:yyyyMMddhhmm).$(Rev:r)
+
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    exclude:
+      - .azure-pipelines
+      - azure-pipelines.yml
+      - CONTRIBUTING.md
+      - README.md
+
+stages:
+  - stage: test
+    displayName: Test
+    jobs:
+      - job: test
+        displayName: Unit tests
+        pool:
+          vmImage: ${{ variables.vmImage }}
+        steps:
+
+          - task: NodeTool@0
+            displayName: Use Node.js ${{ variables.nodejsVersion }} 
+            inputs:
+              versionSpec: ${{ variables.nodejsVersion }}
+        
+          - task: Npm@1
+            displayName: Install dependencies
+            inputs:
+              command: install
+        
+          - bash: | 
+              export NOCK_BACK_MODE=lockdown
+              npm test:ci
+            displayName: Run unit tests
+        
+          - task: PublishTestResults@2
+            condition: succeededOrFailed()
+            inputs:
+              testRunner: JUnit
+              testResultsFiles: '**/test-results.xml'

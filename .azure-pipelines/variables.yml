@@ -1,0 +1,7 @@
+variables:
+  - name: name
+    value: qw
+  - name: nodejsVersion
+    value: 14.x
+  - name: vmImage
+    value: ubuntu-20.04
