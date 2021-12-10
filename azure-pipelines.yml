@@ -36,7 +36,7 @@ stages:
         
           - bash: | 
               export NOCK_BACK_MODE=lockdown
-              npm test:ci
+              npm run test:ci
             displayName: Run unit tests
         
           - task: PublishTestResults@2
