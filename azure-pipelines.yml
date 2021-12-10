@@ -45,6 +45,7 @@ stages:
               testResultsFiles: '**/test-results.xml'
 
           - task: PublishCodeCoverageResults@1
+            displayName: Publish code coverage report
             inputs: 
               codeCoverageTool: Cobertura
               summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
