@@ -9,8 +9,6 @@ trigger:
       - main
   paths:
     exclude:
-      - .azure-pipelines
-      - azure-pipelines.yml
       - CONTRIBUTING.md
       - README.md
 
