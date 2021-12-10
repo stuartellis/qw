@@ -41,6 +41,7 @@ stages:
         
           - task: PublishTestResults@2
             condition: succeededOrFailed()
+            displayName: Publish unit tests
             inputs:
               testRunner: JUnit
               testResultsFiles: '**/test-results.xml'
