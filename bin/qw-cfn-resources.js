@@ -38,7 +38,7 @@ async function run() {
     }
     
     await output.ensureDirectory(rootPath);
-    await output.writeFile(stackResources, format, outputPath);
+    await output.writeArrayToFile(stackResources, format, outputPath);
   } catch(err) {
     console.error(`%s ${err.message}`, chalk.red('ERR'));
     process.exit(1);

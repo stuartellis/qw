@@ -38,7 +38,7 @@ async function run() {
     }
 
     await output.ensureDirectory(rootPath);
-    await output.writeFile(s3Objects, format, outputPath);
+    await output.writeArrayToFile(s3Objects, format, outputPath);
   } catch(err) {
     console.error(`%s ${err.message}`, chalk.red('ERR'));
     process.exit(1);

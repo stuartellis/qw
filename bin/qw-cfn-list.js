@@ -39,7 +39,7 @@ async function run() {
     }
     
     await output.ensureDirectory(rootPath);
-    await output.writeFile(stacks.StackSummaries, format, outputPath);
+    await output.writeArrayToFile(stacks.StackSummaries, format, outputPath);
   } catch(err) {
     console.error(`%s ${err.message}`, chalk.red('ERR'));
     process.exit(1);

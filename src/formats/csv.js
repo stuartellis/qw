@@ -5,11 +5,11 @@
 */
 
 /**
- * Renders a JavaScript object into CSV format.
- * @param {Array} items - Array of Objects
+ * Renders an Array of JavaScript objects into CSV format.
+ * @param {Array<Object>} items - Array of Objects
  * @return {string} CSV with header
 */
-function fromObject(items) {
+function fromArray(items) {
   const replacer = (key, value) => value === null ? '' : value;
   const header = Object.keys(items[0]);
   const csv = [
@@ -19,4 +19,19 @@ function fromObject(items) {
   return csv;
 }
 
-module.exports = { fromObject };
+/**
+ * Renders a JavaScript object into CSV format.
+ * @param {Object} item - Object
+ * @return {string} CSV with header
+*/
+function fromObject(item) {
+  const replacer = (key, value) => value === null ? '' : value;
+  const header = Object.keys(item);
+  const csv = [
+    header.join(','),
+    header.map(fieldName => JSON.stringify(item[fieldName], replacer)).join(',')
+  ].join('\r\n');
+  return csv;
+}
+
+module.exports = { fromArray, fromObject };

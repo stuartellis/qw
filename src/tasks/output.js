@@ -12,7 +12,7 @@ const { stringer } = require('../serialize');
 
 /**
  * Validates number of items.
- * @param {Array} items - Items
+ * @param {Array<Object>} items - Items
  * @param {String} owner - The name of the account or category that the items belong to
  * @param {String} singularName - Singular name for an item, e.g. 'object'
  * @param {String} pluralName - Plural for items, e.g. 'objects'
@@ -47,15 +47,27 @@ async function ensureDirectory(fullPath) {
 }
 
 /**
- * Writes data to a file.
- * @param {Array} items - Items
+ * Writes Array of Objects to a file.
+ * @param {Array<Object>} items - Items
  * @param {String} format - Text format, e.g. 'json'
  * @param {String} outputPath - Full path where the file will be created, including the file name
 */
-async function writeFile(items, format, outputPath) {
-  let content = stringer.format(format, items);
+async function writeArrayToFile(items, format, outputPath) {
+  let content = stringer.fromArray(format, items);
   await fs.writeFile(outputPath, content, 'utf8');
   console.log(`%s Wrote file ${outputPath}`, chalk.green('INFO'));
 }
 
-module.exports = { countItems, ensureDirectory, writeFile };
+/**
+ * Writes Object to a file.
+ * @param {Object} item - Item
+ * @param {String} format - Text format, e.g. 'json'
+ * @param {String} outputPath - Full path where the file will be created, including the file name
+*/
+async function writeObjectToFile(item, format, outputPath) {
+  let content = stringer.fromObject(format, item);
+  await fs.writeFile(outputPath, content, 'utf8');
+  console.log(`%s Wrote file ${outputPath}`, chalk.green('INFO'));
+}
+
+module.exports = { countItems, ensureDirectory, writeArrayToFile, writeObjectToFile };
