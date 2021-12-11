@@ -11,6 +11,22 @@ const { stringer } = require('../serialize');
 */
 
 /**
+ * Ensures that directory exists.
+ * @param {String} fullPath - Full path for directory
+*/
+async function ensureDirectory(fullPath) {
+  const dirResult = await fs.mkdir(fullPath, { recursive: true });
+
+  if (dirResult) {
+    console.log(`%s Created directory ${dirResult}`, chalk.green('INFO'));
+  } else {
+    console.log(`%s Directory ${fullPath} already exists`, chalk.blue('INFO'));
+  }
+
+  return fullPath; 
+}
+
+/**
  * Log item.
  * @param {Object} item - Item
  * @param {String} owner - The name of the account or category that the items belong to
@@ -39,22 +55,6 @@ function logItemCount(items, owner, singularName, pluralName) {
     console.log(`%s ${items.length} ${pluralName} found for ${owner}`, chalk.blue('INFO'));
     break;
   }
-}
-
-/**
- * Ensures that directory exists.
- * @param {String} fullPath - Full path for directory
-*/
-async function ensureDirectory(fullPath) {
-  const dirResult = await fs.mkdir(fullPath, { recursive: true });
-
-  if (dirResult) {
-    console.log(`%s Created directory ${dirResult}`, chalk.green('INFO'));
-  } else {
-    console.log(`%s Directory ${fullPath} already exists`, chalk.blue('INFO'));
-  }
-
-  return fullPath; 
 }
 
 /**
