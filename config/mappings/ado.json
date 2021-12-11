@@ -19,6 +19,12 @@
                     "index": "https://dev.azure.com/{organization}/{project}/_apis/git/repositories?api-version=6.0&includeLinks=true",
                     "item": "https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}??api-version=6.0",
                     "plural": "repos"
+                },
+                "testrun": {
+                    "identifier": "testrunId",
+                    "index": "https://dev.azure.com/{organization}/{project}/_apis/test/runs?api-version=6.0&includeLinks=true",
+                    "item": "https://dev.azure.com/{organization}/{project}/_apis/test/runs/{testrunId}??api-version=6.0",
+                    "plural": "testruns"
                 }
             }
         },

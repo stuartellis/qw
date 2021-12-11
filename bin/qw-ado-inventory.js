@@ -56,7 +56,7 @@ async function run() {
 
 program.addOption(new Option('-f, --format <type>', 'Format of output').choices(['csv', 'json']).default('json', 'json'));
 program.option('-o, --output <path>', 'Path and name of output file, e.g. /tmp/repos.csv');
-program.addOption(new Option('-t, --type <resource>', 'Type of resource').choices(['release', 'repo', 'pipeline']).default('repo', 'repo'));
+program.addOption(new Option('-t, --type <resource>', 'Type of resource').choices(['release', 'repo', 'pipeline', 'testrun']).default('repo', 'repo'));
 
 program.action(run);
 program.parseAsync(process.argv);

@@ -46,7 +46,7 @@ async function run() {
     if (outputPath) {
       rootPath = path.dirname(outputPath);
     } else {
-      rootPath = path.join(process.cwd(), 'tmp', 'items', owner, resourceType);
+      rootPath = path.join(process.cwd(), 'tmp', 'items', owner, resourceTypePlural);
       const fileName = timestamp.fileName(`${owner}-${resourceType}-${itemId}`, new Date(), format);
       outputPath = path.join(rootPath, fileName); 
     }
@@ -62,7 +62,7 @@ async function run() {
 program.addOption(new Option('-f, --format <type>', 'Format of output').choices(['csv', 'json']).default('json', 'json'));
 program.requiredOption('-i, --id <id>', 'ADO ID of item');
 program.option('-o, --output <path>', 'Path and name of output file, e.g. /tmp/repos.csv');
-program.addOption(new Option('-t, --type <resource>', 'Type of resource').choices(['release', 'repo', 'pipeline']).default('repo', 'repo'));
+program.addOption(new Option('-t, --type <resource>', 'Type of resource').choices(['release', 'repo', 'pipeline', 'testrun']).default('repo', 'repo'));
 
 program.action(run);
 program.parseAsync(process.argv);
