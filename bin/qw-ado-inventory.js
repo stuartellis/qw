@@ -34,7 +34,7 @@ async function run() {
       adoPat, urlTemplate, queryValues, 
       adoResponse.checkError, adoResponse.checkSuccess);
     const items = response.data.value;
-    output.countItems(items, owner, resourceType, resourceTypePlural);
+    output.logItemCount(items, owner, resourceType, resourceTypePlural);
 
     let rootPath = undefined;
 

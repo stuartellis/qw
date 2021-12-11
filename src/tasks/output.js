@@ -11,13 +11,24 @@ const { stringer } = require('../serialize');
 */
 
 /**
- * Validates number of items.
+ * Log item.
+ * @param {Object} item - Item
+ * @param {String} owner - The name of the account or category that the items belong to
+ * @param {String} singularName - Singular name for an item, e.g. 'object'
+*/
+function logItem(item, owner, singularName) {
+  const itemIdentifier = `${item.name} (ID: ${item.id})`;
+  console.log(`%s ${singularName} ${itemIdentifier} found for ${owner}`, chalk.blue('INFO'));
+}
+
+/**
+ * Log number of items.
  * @param {Array<Object>} items - Items
  * @param {String} owner - The name of the account or category that the items belong to
  * @param {String} singularName - Singular name for an item, e.g. 'object'
  * @param {String} pluralName - Plural for items, e.g. 'objects'
 */
-function countItems(items, owner, singularName, pluralName) {
+function logItemCount(items, owner, singularName, pluralName) {
   switch (items.length) {
   case 0:
     throw new Error(`No ${pluralName} found for ${owner}`);
@@ -70,4 +81,4 @@ async function writeObjectToFile(item, format, outputPath) {
   console.log(`%s Wrote file ${outputPath}`, chalk.green('INFO'));
 }
 
-module.exports = { countItems, ensureDirectory, writeArrayToFile, writeObjectToFile };
+module.exports = { ensureDirectory, logItem, logItemCount, writeArrayToFile, writeObjectToFile };

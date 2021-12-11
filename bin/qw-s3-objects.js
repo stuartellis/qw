@@ -25,7 +25,7 @@ async function run() {
   try {
     const s3Client = s3.client(awsRegion);
     const s3Objects = await s3.listAllObjects(s3Client, bucketName);
-    output.countItems(s3Objects, bucketName, singularName, pluralName);
+    output.logItemCount(s3Objects, bucketName, singularName, pluralName);
 
     let rootPath = undefined;
 

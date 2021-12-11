@@ -26,7 +26,7 @@ async function run() {
   try {
     const cfnClient = cfn.client(awsRegion);
     const stacks = await cfn.listStacks(cfnClient, statuses);
-    output.countItems(stacks, awsRegion, singularName, pluralName);
+    output.logItemCount(stacks, awsRegion, singularName, pluralName);
 
     let rootPath = undefined;
 

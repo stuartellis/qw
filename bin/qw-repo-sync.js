@@ -52,7 +52,7 @@ async function run() {
       break;
     }
 
-    output.countItems(includedRepos, 'inventory', 'available repo', 'available repos'); 
+    output.logItemCount(includedRepos, 'inventory', 'available repo', 'available repos'); 
 
     let rootPath = undefined;
 
