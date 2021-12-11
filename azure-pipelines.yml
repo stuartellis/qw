@@ -43,6 +43,7 @@ stages:
             inputs:
               testRunner: JUnit
               testResultsFiles: '**/test-results.xml'
+              testRunTitle: ${{variables.name}}-unit-tests
 
           - task: PublishCodeCoverageResults@1
             displayName: Publish code coverage report
