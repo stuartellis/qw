@@ -7,9 +7,10 @@ const { Command } = require('commander');
 
 const { ado: adoMappings } = require('../config/mappings/ado');
 const { ado: adoService } = require('../config/services/ado');
+
 const { url: urlFmt } = require('../src/formats');
-const { ConsoleLogger } = require('../src/logger');
 const { command: git } = require('../src/git');
+const { ConsoleLogger } = require('../src/logger');
 const { logMessage, output } = require('../src/tasks');
 
 const program = new Command();

@@ -5,6 +5,7 @@ const path = require('path');
 const { Command, Option } = require('commander');
 
 const { aws: awsConfig } = require('../config/services/aws');
+
 const { cfn, region } = require('../src/aws');
 const { timestamp } = require('../src/formats');
 const { ConsoleLogger } = require('../src/logger');

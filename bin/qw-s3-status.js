@@ -3,6 +3,7 @@
 const { Command } = require('commander');
 
 const { aws: awsConfig } = require('../config/services/aws');
+
 const { region, s3 } = require('../src/aws');
 const { ConsoleLogger } = require('../src/logger');
 

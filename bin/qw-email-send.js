@@ -5,6 +5,7 @@ const fs = require('fs').promises;
 const { Command } = require('commander');
 
 const { email: mailer } = require('../config/services/email');
+
 const { smtp } = require('../src/email');
 const { ConsoleLogger } = require('../src/logger');
 
