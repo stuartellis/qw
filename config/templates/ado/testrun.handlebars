@@ -1,5 +1,17 @@
-{{ name }} ({{ id }})
+{{ name }} - Test Run {{ id }}
+---
 
-Project: {{ project.name }}
+Started: {{ startedDate }}
+Completed: {{ completedDate }}
 
-URL: {{ url }}
+Status: {{ state }}
+Post-process Status: {{ postProcessState }}
+
+Total Tests: {{ totalTests }}
+Passed Tests: {{ passedTests }}
+Failed Tests: {{ failedTests }}
+Incomplete Tests: {{ incompleteTests }}
+Not Applicable Tests: {{ notApplicableTests }}
+Unanalyzed Tests: {{ unanalyzedTests }}
+
+URL: {{{ webAccessUrl }}}
