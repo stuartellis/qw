@@ -8,10 +8,30 @@ Status: {{ state }}
 Post-process Status: {{ postProcessState }}
 
 Total Tests: {{ totalTests }}
+{{#if passedTests}}
 Passed Tests: {{ passedTests }}
+{{else}}
+Passed Tests: 0
+{{/if}}
+{{#if failedTests}}
 Failed Tests: {{ failedTests }}
+{{else}}
+Failed Tests: 0
+{{/if}}
+{{#if incompleteTests}}
 Incomplete Tests: {{ incompleteTests }}
+{{else}}
+Incomplete Tests: 0
+{{/if}}
+{{#if notApplicableTests}}
 Not Applicable Tests: {{ notApplicableTests }}
+{{else}}
+Not Applicable Tests: 0
+{{/if}}
+{{#if unanalyzedTests}}
 Unanalyzed Tests: {{ unanalyzedTests }}
+{{else}}
+Unanalyzed Tests: 0
+{{/if}}
 
 URL: {{{ webAccessUrl }}}
