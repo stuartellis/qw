@@ -1,15 +1,16 @@
 #!/usr/bin/env node
 
-const chalk = require('chalk');
 const { Command } = require('commander');
 
 const { aws: awsConfig } = require('../config/services/aws');
 const { region, s3 } = require('../src/aws');
-const { log } = require('../src/tasks');
+const { ConsoleLogger } = require('../src/logger');
 
 const program = new Command();
 
 async function run() {
+  const logger = new ConsoleLogger(console);
+
   const options = program.opts();
   const bucketName = options.name;
   const awsRegion = region.get() || awsConfig.defaults.region;
@@ -19,20 +20,20 @@ async function run() {
     const bucketStatus = await s3.bucketStatus(s3Client, bucketName);
     switch (bucketStatus) {
     case 200:
-      console.log(`%s S3 bucket ${bucketName} is accessible`, chalk.green('INFO'));
+      logger.info(`%s S3 bucket ${bucketName} is accessible`);
       break;
     case 403:
-      console.log(`%s S3 bucket ${bucketName} exists but you cannot access it`, chalk.red('ERR'));
+      logger.error(`%s S3 bucket ${bucketName} exists but you cannot access it`);
       break;
     case 404:
-      console.log(`%s S3 bucket ${bucketName} does not exist`, chalk.red('ERR'));
+      logger.error(`%s S3 bucket ${bucketName} does not exist`);
       break;
     default:
-      console.log(`%s S3 bucket ${bucketName} status ${bucketStatus}`, chalk.yellow('WARN'));
+      logger.warn(`%s S3 bucket ${bucketName} status ${bucketStatus}`);
       break;     
     }
   } catch(err) {
-    log.writeError(err);
+    logger.error(err);
     process.exit(1);
   }
 

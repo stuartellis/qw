@@ -6,13 +6,14 @@ const { Command } = require('commander');
 
 const { email: mailer } = require('../config/services/email');
 const { smtp } = require('../src/email');
-const { log } = require('../src/tasks');
+const { ConsoleLogger } = require('../src/logger');
 
 const program = new Command();
 
 async function run() {
+  const logger = new ConsoleLogger(console);
   const options = program.opts();
-  
+
   try {
     let message = {};
     if (options.json) {
@@ -39,7 +40,7 @@ async function run() {
     await smtp.sendSmtp(transport, message);
 
   } catch(err) {
-    log.writeError(err);
+    logger.error(err);
     process.exit(1);
   }
 

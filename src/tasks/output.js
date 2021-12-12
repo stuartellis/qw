@@ -2,8 +2,6 @@
 
 const fs = require('fs').promises;
 
-const chalk = require('chalk');
-
 const { hbTemplate } = require('../formats');
 const { stringer } = require('../serialize');
 
@@ -13,15 +11,16 @@ const { stringer } = require('../serialize');
 
 /**
  * Ensures that directory exists.
+ * @param {Object} logger - Logger
  * @param {String} fullPath - Full path for directory
 */
-async function ensureDirectory(fullPath) {
+async function ensureDirectory(logger, fullPath) {
   const dirResult = await fs.mkdir(fullPath, { recursive: true });
 
   if (dirResult) {
-    console.log(`%s Created directory ${dirResult}`, chalk.green('INFO'));
+    logger.info(`%s Created directory ${dirResult}`);
   } else {
-    console.log(`%s Directory ${fullPath} already exists`, chalk.blue('INFO'));
+    logger.warn(`%s Directory ${fullPath} already exists`);
   }
 
   return fullPath; 
@@ -29,39 +28,42 @@ async function ensureDirectory(fullPath) {
 
 /**
  * Writes Array of Objects to a file.
+ * @param {Object} logger - Logger
  * @param {Array<Object>} items - Items
  * @param {String} format - Text format, e.g. 'json'
  * @param {String} outputPath - Full path where the file will be created, including the file name
 */
-async function writeArrayToFile(items, format, outputPath) {
+async function writeArrayToFile(logger, items, format, outputPath) {
   const content = stringer.fromArray(format, items);
   await fs.writeFile(outputPath, content, 'utf8');
-  console.log(`%s Created file ${outputPath}`, chalk.green('INFO'));
+  logger.info(`%s Created file ${outputPath}`);
 }
 
 /**
  * Writes Handlebars template to a file.
+ * @param {Object} logger - Logger
  * @param {Object} data - Object containing the source data
  * @param {String} templateContent - The template as a string
  * @param {String} outputPath - Full path where the file will be created, including the file name
 */
-async function writeHbTemplateToFile(data, templateContent, outputPath) {
+async function writeHbTemplateToFile(logger, data, templateContent, outputPath) {
   const template = hbTemplate.compileTemplate(templateContent);
   const content = await hbTemplate.render(data, template, hbTemplate.customHelpers());
   await fs.writeFile(outputPath, content, 'utf8');
-  console.log(`%s Created file ${outputPath}`, chalk.green('INFO'));
+  logger.info(`%s Created file ${outputPath}`);
 }
 
 /**
  * Writes Object to a file.
+ * @param {Object} logger - Logger
  * @param {Object} item - Item
  * @param {String} format - Text format, e.g. 'json'
  * @param {String} outputPath - Full path where the file will be created, including the file name
 */
-async function writeObjectToFile(item, format, outputPath) {
+async function writeObjectToFile(logger, item, format, outputPath) {
   const content = stringer.fromObject(format, item);
   await fs.writeFile(outputPath, content, 'utf8');
-  console.log(`%s Created file ${outputPath}`, chalk.green('INFO'));
+  logger.info(`%s Created file ${outputPath}`);
 }
 
 module.exports = { ensureDirectory, writeArrayToFile, writeHbTemplateToFile, writeObjectToFile };

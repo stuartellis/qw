@@ -7,11 +7,14 @@ const { Command, Option } = require('commander');
 const { aws: awsConfig } = require('../config/services/aws');
 const { region, s3 } = require('../src/aws');
 const { timestamp } = require('../src/formats');
-const { log, output } = require('../src/tasks');
+const { ConsoleLogger } = require('../src/logger');
+const { logMessage, output } = require('../src/tasks');
 
 const program = new Command();
 
 async function run() {
+  const logger = new ConsoleLogger(console);
+  
   const options = program.opts();
   const bucketName = options.name;
   const format = options.format;
@@ -24,7 +27,7 @@ async function run() {
   try {
     const s3Client = s3.client(awsRegion);
     const s3Objects = await s3.listAllObjects(s3Client, bucketName);
-    log.writeItemCount(s3Objects, bucketName, singularName, pluralName);
+    logMessage.writeItemCount(logger, s3Objects, bucketName, singularName, pluralName);
 
     let rootPath = undefined;
 
@@ -36,10 +39,10 @@ async function run() {
       outputPath = path.join(rootPath, fileName); 
     }
 
-    await output.ensureDirectory(rootPath);
-    await output.writeArrayToFile(s3Objects, format, outputPath);
+    await output.ensureDirectory(logger, rootPath);
+    await output.writeArrayToFile(logger, s3Objects, format, outputPath);
   } catch(err) {
-    log.writeError(err);
+    logger.error(err);
     process.exit(1);
   }
 }

@@ -3,17 +3,18 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const chalk = require('chalk');
 const { Command } = require('commander');
 
 const { timestamp } = require('../src/formats');
+const { ConsoleLogger } = require('../src/logger');
 const { output } = require('../src/tasks');
 
 const program = new Command();
 
 async function run() {
-  const options = program.opts();
+  const logger = new ConsoleLogger(console);
 
+  const options = program.opts();
   const dataFilePath = options.data;
   let outputPath = options.output;
   const templateFilePath = options.template;
@@ -33,11 +34,11 @@ async function run() {
       outputPath = path.join(rootPath, fileName); 
     }
     
-    await output.ensureDirectory(rootPath);
-    await output.writeHbTemplateToFile(data, templateContent, outputPath);
+    await output.ensureDirectory(logger, rootPath);
+    await output.writeHbTemplateToFile(logger, data, templateContent, outputPath);
 
   } catch(err) {
-    console.error(`%s ${err.message}`, chalk.red('ERR'));
+    logger.error(err);
     process.exit(1);
   }
 }

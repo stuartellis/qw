@@ -8,13 +8,15 @@ const { ado: adoMappings } = require('../config/mappings/ado');
 const { ado: adoService } = require('../config/services/ado');
 const { pat, response: adoResponse } = require('../src/ado');
 const { timestamp } = require('../src/formats');
-const { adoRequest, log, output } = require('../src/tasks');
+const { ConsoleLogger } = require('../src/logger');
+const { adoRequest, logMessage, output } = require('../src/tasks');
 
 const program = new Command();
 
 async function run() {
-  const options = program.opts();
+  const logger = new ConsoleLogger(console);
 
+  const options = program.opts();
   const itemId = options.id; 
   const resourceType = options.type;
   const format = options.format;
@@ -38,7 +40,7 @@ async function run() {
       adoPat, urlTemplate, queryValues, 
       adoResponse.checkError, adoResponse.checkSuccess);
     const item = response.data;
-    log.writeItem(item, owner, resourceType, resourceTypePlural);
+    logMessage.writeItem(logger, item, owner, resourceType, resourceTypePlural);
 
     let rootPath = undefined;
 
@@ -50,10 +52,10 @@ async function run() {
       outputPath = path.join(rootPath, fileName); 
     }
     
-    await output.ensureDirectory(rootPath);
-    await output.writeObjectToFile(item, format, outputPath);
+    await output.ensureDirectory(logger, rootPath);
+    await output.writeObjectToFile(logger, item, format, outputPath);
   } catch(err) {
-    log.writeError(err);
+    logger.error(err);
     process.exit(1);
   }
 }

@@ -1,5 +1,5 @@
 const adoRequest = require('./adoRequest');
-const log = require('./log');
+const logMessage = require('./logMessage');
 const output = require('./output');
 
-module.exports = { adoRequest, log, output };
+module.exports = { adoRequest, logMessage, output };

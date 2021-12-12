@@ -7,11 +7,14 @@ const { Command, Option } = require('commander');
 const { aws: awsConfig } = require('../config/services/aws');
 const { cfn, region } = require('../src/aws');
 const { timestamp } = require('../src/formats');
-const { log, output } = require('../src/tasks');
+const { ConsoleLogger } = require('../src/logger');
+const { logMessage, output } = require('../src/tasks');
 
 const program = new Command();
 
 async function run() {
+  const logger = new ConsoleLogger(console);
+
   const options = program.opts();
   const format = options.format;
   let outputPath = options.output;
@@ -25,7 +28,7 @@ async function run() {
   try {
     const cfnClient = cfn.client(awsRegion);
     const stacks = await cfn.listStacks(cfnClient, statuses);
-    log.writeItemCount(stacks, awsRegion, singularName, pluralName);
+    logMessage.writeItemCount(logger, stacks, awsRegion, singularName, pluralName);
 
     let rootPath = undefined;
 
@@ -37,10 +40,10 @@ async function run() {
       outputPath = path.join(rootPath, fileName); 
     }
     
-    await output.ensureDirectory(rootPath);
-    await output.writeArrayToFile(stacks.StackSummaries, format, outputPath);
+    await output.ensureDirectory(logger, rootPath);
+    await output.writeArrayToFile(logger, stacks.StackSummaries, format, outputPath);
   } catch(err) {
-    log.writeError(err);
+    logger.error(err);
     process.exit(1);
   }
 

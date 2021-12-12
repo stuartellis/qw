@@ -3,18 +3,20 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const chalk = require('chalk');
 const { Command } = require('commander');
 
 const { ado: adoMappings } = require('../config/mappings/ado');
 const { ado: adoService } = require('../config/services/ado');
 const { url: urlFmt } = require('../src/formats');
+const { ConsoleLogger } = require('../src/logger');
 const { command: git } = require('../src/git');
-const { log, output } = require('../src/tasks');
+const { logMessage, output } = require('../src/tasks');
 
 const program = new Command();
 
 async function run() {
+  const logger = new ConsoleLogger(console);
+
   const options = program.opts();
   let outputPath = options.output;
   const inventory = options.inventory;
@@ -25,7 +27,7 @@ async function run() {
     const content = await fs.readFile(inventory, { encoding: 'utf8' });
     const data = JSON.parse(content);
 
-    console.log(`%s Reading inventory ${inventory}`, chalk.green('INFO'));
+    logger.info(`%s Reading inventory ${inventory}`);
 
     const includedRepos = [];
     const excludedRepos = [];
@@ -42,17 +44,17 @@ async function run() {
 
     switch (excludedRepos.length) {
     case 0:
-      console.log('%s No repos excluded', chalk.green('INFO'));
+      logger.info('%s No repos excluded');
       break;
     case 1:
-      console.log(`%s 1 repo in inventory excluded: ${excludedNames}`, chalk.yellow('WARN'));
+      logger.warn(`%s 1 repo in inventory excluded: ${excludedNames}`);
       break;
     default:
-      console.log(`%s ${excludedRepos.length} repos in inventory excluded: ${excludedNames}`, chalk.yellow('WARN'));
+      logger.warn(`%s ${excludedRepos.length} repos in inventory excluded: ${excludedNames}`);
       break;
     }
 
-    log.writeItemCount(includedRepos, 'inventory', 'available repo', 'available repos'); 
+    logMessage.writeItemCount(logger, includedRepos, 'inventory', 'available repo', 'available repos'); 
 
     let rootPath = undefined;
 
@@ -62,21 +64,21 @@ async function run() {
       rootPath = path.join(process.cwd(), 'tmp', 'repos');
     }
     
-    await output.ensureDirectory(rootPath);
+    await output.ensureDirectory(logger, rootPath);
 
-    console.log(`%s Starting sync of repos to ${rootPath}`, chalk.green('INFO'));
+    logger.info(`%s Starting sync of repos to ${rootPath}`);
 
     for (const repo of includedRepos) {
       const gitTemplateValues = Object.assign(adoService, { repoName: repo.name });  
       const sourceRepo = urlFmt.fromTemplate(urlTemplate, gitTemplateValues);
-      console.log(`%s Syncing ${sourceRepo.toString()}`, chalk.blue('INFO'));
+      logger.info(`%s Syncing ${sourceRepo.toString()}`);
       await git.sync(repo.name, sourceRepo.toString(), rootPath);
     }
 
-    console.log('%s Sync complete', chalk.green('INFO'));
+    logger.info('%s Sync complete');
 
   } catch(err) {
-    log.writeError(err);
+    logger.error(err);
     process.exit(1);
   }
 
