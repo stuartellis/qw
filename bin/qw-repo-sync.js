@@ -10,7 +10,7 @@ const { ado: adoMappings } = require('../config/mappings/ado');
 const { ado: adoService } = require('../config/services/ado');
 const { url: urlFmt } = require('../src/formats');
 const { command: git } = require('../src/git');
-const { output } = require('../src/tasks');
+const { log, output } = require('../src/tasks');
 
 const program = new Command();
 
@@ -52,7 +52,7 @@ async function run() {
       break;
     }
 
-    output.logItemCount(includedRepos, 'inventory', 'available repo', 'available repos'); 
+    log.writeItemCount(includedRepos, 'inventory', 'available repo', 'available repos'); 
 
     let rootPath = undefined;
 
@@ -83,7 +83,7 @@ async function run() {
 }
 
 program.requiredOption('-i, --inventory <path>', 'Inventory of repositories in JSON format');
-program.option('-o, --output <path>', 'Path of parent directory for the repositories, e.g. ./tmp');
+program.option('-o, --output <path>', 'Path of parent directory for the repositories, e.g. tmp/repos');
 
 program.action(run);
 program.parseAsync(process.argv);

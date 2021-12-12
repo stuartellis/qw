@@ -8,7 +8,7 @@ const { Command, Option } = require('commander');
 const { aws: awsConfig } = require('../config/services/aws');
 const { cfn, region } = require('../src/aws');
 const { timestamp } = require('../src/formats');
-const { output } = require('../src/tasks');
+const { log, output } = require('../src/tasks');
 
 const program = new Command();
 
@@ -26,7 +26,7 @@ async function run() {
   try {
     const cfnClient = cfn.client(awsRegion);
     const stacks = await cfn.listStacks(cfnClient, statuses);
-    output.logItemCount(stacks, awsRegion, singularName, pluralName);
+    log.writeItemCount(stacks, awsRegion, singularName, pluralName);
 
     let rootPath = undefined;
 
@@ -48,7 +48,7 @@ async function run() {
 }
 
 program.addOption(new Option('-f, --format <type>', 'Format of output').choices(['csv', 'json']).default('json', 'json'));
-program.option('-o, --output <path>', 'Path and name of output file, e.g. /tmp/stacks.csv');
+program.option('-o, --output <path>', 'Path and name of output file, e.g. tmp/aws/stacks.csv');
 
 program.action(run);
 program.parseAsync(process.argv);

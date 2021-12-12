@@ -4,7 +4,7 @@ const assert = require('assert');
 const { csv } = require('../../src/formats');
 
 describe('csv#fromArray()', function() {
-  it('should return Array of Objects as CSV format', function() {
+  it('should return Array of Objects in CSV format', function() {
 
     const items = [
       {
@@ -24,7 +24,7 @@ describe('csv#fromArray()', function() {
   });
 
   describe('csv#fromObject()', function() {
-    it('should return Object as CSV format', function() {
+    it('should return Object in CSV format', function() {
   
       const item = {
         id: 'b1e42bd0-49f6-4b57-8ade-5e1c25fbe8a2',

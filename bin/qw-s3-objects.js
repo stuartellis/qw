@@ -8,7 +8,7 @@ const { Command, Option } = require('commander');
 const { aws: awsConfig } = require('../config/services/aws');
 const { region, s3 } = require('../src/aws');
 const { timestamp } = require('../src/formats');
-const { output } = require('../src/tasks');
+const { log, output } = require('../src/tasks');
 
 const program = new Command();
 
@@ -25,7 +25,7 @@ async function run() {
   try {
     const s3Client = s3.client(awsRegion);
     const s3Objects = await s3.listAllObjects(s3Client, bucketName);
-    output.logItemCount(s3Objects, bucketName, singularName, pluralName);
+    log.writeItemCount(s3Objects, bucketName, singularName, pluralName);
 
     let rootPath = undefined;
 
@@ -47,7 +47,7 @@ async function run() {
 
 program.addOption(new Option('-f, --format <type>', 'Format of output').choices(['csv', 'json']).default('json', 'json'));
 program.requiredOption('-n, --name <name>', 'Name of CloudFormation stack');
-program.option('-o, --output <path>', 'Path and name of output file, e.g. /tmp/objects.csv');
+program.option('-o, --output <path>', 'Path and name of output file, e.g. tmp/aws/objects.csv');
 
 program.action(run);
 program.parseAsync(process.argv);

@@ -8,7 +8,7 @@ const { Command, Option } = require('commander');
 const { aws: awsConfig } = require('../config/services/aws');
 const { cfn, region } = require('../src/aws');
 const { timestamp } = require('../src/formats');
-const { output } = require('../src/tasks');
+const { log, output } = require('../src/tasks');
 
 const program = new Command();
 
@@ -25,7 +25,7 @@ async function run() {
   try {
     const cfnClient = cfn.client(awsRegion);
     const stackResources = await cfn.listStackResources(cfnClient, stackName);
-    output.logItemCount(stackResources, stackName, singularName, pluralName);
+    log.writeItemCount(stackResources, stackName, singularName, pluralName);
 
     let rootPath = undefined;
 

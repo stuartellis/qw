@@ -9,7 +9,7 @@ const { ado: adoMappings } = require('../config/mappings/ado');
 const { ado: adoService } = require('../config/services/ado');
 const { pat, response: adoResponse } = require('../src/ado');
 const { timestamp } = require('../src/formats');
-const { adoRequest, output } = require('../src/tasks');
+const { adoRequest, log, output } = require('../src/tasks');
 
 const program = new Command();
 
@@ -39,7 +39,7 @@ async function run() {
       adoPat, urlTemplate, queryValues, 
       adoResponse.checkError, adoResponse.checkSuccess);
     const item = response.data;
-    output.logItem(item, owner, resourceType, resourceTypePlural);
+    log.writeItem(item, owner, resourceType, resourceTypePlural);
 
     let rootPath = undefined;
 
@@ -61,7 +61,7 @@ async function run() {
 
 program.addOption(new Option('-f, --format <type>', 'Format of output').choices(['csv', 'json']).default('json', 'json'));
 program.requiredOption('-i, --id <id>', 'ADO ID of item');
-program.option('-o, --output <path>', 'Path and name of output file, e.g. /tmp/repos.csv');
+program.option('-o, --output <path>', 'Path and name of output file, e.g. tmp/repos.csv');
 program.addOption(new Option('-t, --type <resource>', 'Type of resource').choices(['release', 'repo', 'pipeline', 'testrun']).default('repo', 'repo'));
 
 program.action(run);

@@ -4,6 +4,7 @@ const fs = require('fs').promises;
 
 const chalk = require('chalk');
 
+const { hbTemplate } = require('../formats');
 const { stringer } = require('../serialize');
 
 /**
@@ -27,46 +28,28 @@ async function ensureDirectory(fullPath) {
 }
 
 /**
- * Log item.
- * @param {Object} item - Item
- * @param {String} owner - The name of the account or category that the items belong to
- * @param {String} singularName - Singular name for an item, e.g. 'object'
-*/
-function logItem(item, owner, singularName) {
-  const itemIdentifier = `${item.name} (ID: ${item.id})`;
-  console.log(`%s ${singularName} ${itemIdentifier} found for ${owner}`, chalk.blue('INFO'));
-}
-
-/**
- * Log number of items.
- * @param {Array<Object>} items - Items
- * @param {String} owner - The name of the account or category that the items belong to
- * @param {String} singularName - Singular name for an item, e.g. 'object'
- * @param {String} pluralName - Plural for items, e.g. 'objects'
-*/
-function logItemCount(items, owner, singularName, pluralName) {
-  switch (items.length) {
-  case 0:
-    throw new Error(`No ${pluralName} found for ${owner}`);
-  case 1:
-    console.log(`%s 1 ${singularName} found for ${owner}`, chalk.blue('INFO'));
-    break;
-  default:
-    console.log(`%s ${items.length} ${pluralName} found for ${owner}`, chalk.blue('INFO'));
-    break;
-  }
-}
-
-/**
  * Writes Array of Objects to a file.
  * @param {Array<Object>} items - Items
  * @param {String} format - Text format, e.g. 'json'
  * @param {String} outputPath - Full path where the file will be created, including the file name
 */
 async function writeArrayToFile(items, format, outputPath) {
-  let content = stringer.fromArray(format, items);
+  const content = stringer.fromArray(format, items);
   await fs.writeFile(outputPath, content, 'utf8');
-  console.log(`%s Wrote file ${outputPath}`, chalk.green('INFO'));
+  console.log(`%s Created file ${outputPath}`, chalk.green('INFO'));
+}
+
+/**
+ * Writes Handlebars template to a file.
+ * @param {Object} data - Object containing the source data
+ * @param {String} templateContent - The template as a string
+ * @param {String} outputPath - Full path where the file will be created, including the file name
+*/
+async function writeHbTemplateToFile(data, templateContent, outputPath) {
+  const template = hbTemplate.compileTemplate(templateContent);
+  const content = await hbTemplate.render(data, template, hbTemplate.customHelpers());
+  await fs.writeFile(outputPath, content, 'utf8');
+  console.log(`%s Created file ${outputPath}`, chalk.green('INFO'));
 }
 
 /**
@@ -76,9 +59,9 @@ async function writeArrayToFile(items, format, outputPath) {
  * @param {String} outputPath - Full path where the file will be created, including the file name
 */
 async function writeObjectToFile(item, format, outputPath) {
-  let content = stringer.fromObject(format, item);
+  const content = stringer.fromObject(format, item);
   await fs.writeFile(outputPath, content, 'utf8');
-  console.log(`%s Wrote file ${outputPath}`, chalk.green('INFO'));
+  console.log(`%s Created file ${outputPath}`, chalk.green('INFO'));
 }
 
-module.exports = { ensureDirectory, logItem, logItemCount, writeArrayToFile, writeObjectToFile };
+module.exports = { ensureDirectory, writeArrayToFile, writeHbTemplateToFile, writeObjectToFile };
