@@ -2,7 +2,6 @@
 
 const path = require('path');
 
-const chalk = require('chalk');
 const { Command, Option } = require('commander');
 
 const { aws: awsConfig } = require('../config/services/aws');
@@ -41,7 +40,7 @@ async function run() {
     await output.ensureDirectory(rootPath);
     await output.writeArrayToFile(stacks.StackSummaries, format, outputPath);
   } catch(err) {
-    console.error(`%s ${err.message}`, chalk.red('ERR'));
+    log.writeError(err);
     process.exit(1);
   }
 

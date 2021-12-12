@@ -4,6 +4,14 @@ const chalk = require('chalk');
 
 /**
  * Log item.
+ * @param {Error} err - Error object
+*/
+function writeError(err) {
+  console.error(`%s ${err.message}`, chalk.red('ERR'));
+}
+
+/**
+ * Log item.
  * @param {Object} item - Item
  * @param {String} owner - The name of the account or category that the items belong to
  * @param {String} singularName - Singular name for an item, e.g. 'object'
@@ -33,4 +41,4 @@ function writeItemCount(items, owner, singularName, pluralName) {
   }
 }
 
-module.exports = { writeItem, writeItemCount };
+module.exports = { writeError, writeItem, writeItemCount };

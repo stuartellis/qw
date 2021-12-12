@@ -2,11 +2,11 @@
 
 const fs = require('fs').promises;
 
-const chalk = require('chalk');
 const { Command } = require('commander');
 
 const { email: mailer } = require('../config/services/email');
 const { smtp } = require('../src/email');
+const { log } = require('../src/tasks');
 
 const program = new Command();
 
@@ -39,7 +39,7 @@ async function run() {
     await smtp.sendSmtp(transport, message);
 
   } catch(err) {
-    console.error(`%s ${err.message}`, chalk.red('ERR'));
+    log.writeError(err);
     process.exit(1);
   }
 

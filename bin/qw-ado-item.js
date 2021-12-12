@@ -2,7 +2,6 @@
 
 const path = require('path');
 
-const chalk = require('chalk');
 const { Command, Option } = require('commander');
 
 const { ado: adoMappings } = require('../config/mappings/ado');
@@ -54,7 +53,7 @@ async function run() {
     await output.ensureDirectory(rootPath);
     await output.writeObjectToFile(item, format, outputPath);
   } catch(err) {
-    console.error(`%s ${err.message}`, chalk.red('ERR'));
+    log.writeError(err);
     process.exit(1);
   }
 }

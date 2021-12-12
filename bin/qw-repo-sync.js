@@ -76,7 +76,7 @@ async function run() {
     console.log('%s Sync complete', chalk.green('INFO'));
 
   } catch(err) {
-    console.error(`%s ${err.message}`, chalk.red('ERR'));
+    log.writeError(err);
     process.exit(1);
   }
 

@@ -5,6 +5,7 @@ const { Command } = require('commander');
 
 const { aws: awsConfig } = require('../config/services/aws');
 const { region, s3 } = require('../src/aws');
+const { log } = require('../src/tasks');
 
 const program = new Command();
 
@@ -31,7 +32,7 @@ async function run() {
       break;     
     }
   } catch(err) {
-    console.error(`%s ${err.message}`, chalk.red('ERR'));
+    log.writeError(err);
     process.exit(1);
   }
 
