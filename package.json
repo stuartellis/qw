@@ -11,8 +11,8 @@
     "doc": "jsdoc -c jsdoc.json",
     "prepare": "husky install",
     "pretest": "eslint --ignore-path .gitignore .",
-    "test": "mocha 'test/**/*.test.js' --timeout 3000",
-    "test:ci": "nyc --reporter=cobertura mocha 'test/**/*.test.js' --timeout 3000 --reporter mocha-junit-reporter"
+    "test": "mocha 'test/**/*.test.js' --timeout 5000",
+    "test:ci": "nyc --reporter=cobertura mocha 'test/**/*.test.js' --timeout 5000 --reporter mocha-junit-reporter"
   },
   "engines": {
     "node": ">=12.0.0"
