@@ -40,7 +40,7 @@ The nock tests will make the HTTP call to the remote service and recreate the fi
 
 3. Commit the new fixture file into source control.
 
-## Continous Integration
+## Continuous Integration
 
 To ensure that tests are repeatable:
 
