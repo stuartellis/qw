@@ -26,13 +26,12 @@ async function run() {
     queryValues['buildIds'] = buildIds;
     queryValues['state'] = 'completed';
 
-    const now = new Date(Date.now());
-    let maxDate = now.toISOString();
+    const maxDate = new Date(Date.now());
     const dateOffset = (24*60*60*1000) * 7; 
-    let minDate = new Date(now.setTime(now.getTime() - dateOffset)).toISOString();
+    const minDate = new Date(maxDate.getTime() - dateOffset);
 
-    queryValues['maxLastUpdatedDate'] = maxDate;
-    queryValues['minLastUpdatedDate'] = minDate;
+    queryValues['maxLastUpdatedDate'] = maxDate.toISOString();
+    queryValues['minLastUpdatedDate'] = minDate.toISOString();
 
     const adoPat = pat.get();
     if (adoPat === null) {
