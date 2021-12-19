@@ -17,7 +17,7 @@ stages:
     displayName: Test
     jobs:
       - job: test
-        displayName: Unit tests
+        displayName: Run tests
         pool:
           vmImage: ${{ variables.vmImage }}
         steps:
@@ -54,7 +54,7 @@ stages:
 
           - task: PublishTestResults@2
             condition: succeededOrFailed()
-            displayName: Publish unit tests
+            displayName: Publish unit test results
             inputs:
               testRunner: JUnit
               testResultsFiles: '**/test-results.xml'
