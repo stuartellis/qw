@@ -1,6 +1,6 @@
 {
   "name": "qw",
-  "version": "0.4.0",
+  "version": "0.5.1",
   "description": "Tooling for operations",
   "main": "bin/qw.js",
   "bin": {
@@ -31,6 +31,7 @@
     "@aws-sdk/client-cloudformation": "^3.43.0",
     "@aws-sdk/client-s3": "^3.44.0",
     "@aws-sdk/signature-v4-crt": "^3.41.0",
+    "adolib": "^0.5.1",
     "axios": "^0.22.0",
     "chalk": "^4.1.2",
     "commander": "^8.3.0",

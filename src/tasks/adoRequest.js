@@ -4,7 +4,8 @@
  * @module tasks/adoRequest
 */
 
-const { restClient, pat } = require('../ado'); 
+const { restClient, pat } = require('adolib');
+
 const { url: urlFmt } = require('../formats');
 
 /**

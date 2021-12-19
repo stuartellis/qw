@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
+const { pat, response: adoResponse } = require('adolib');
 const { Command } = require('commander');
 
 const { ado: adoMappings } = require('../config/mappings/ado');
 const { ado: adoService } = require('../config/services/ado');
 
-const { pat, response: adoResponse } = require('../src/ado');
 const { ConsoleLogger } = require('../src/logger');
 const { adoRequest } = require('../src/tasks');
 
