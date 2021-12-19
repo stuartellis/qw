@@ -34,7 +34,7 @@ stages:
               customCommand: ci --ignore-scripts
         
           - task: Npm@1
-            displayName: Linter checks
+            displayName: Run linter checks
             inputs:
               command: custom
               customCommand: run ci:lint
