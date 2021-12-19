@@ -31,13 +31,27 @@ stages:
             displayName: Install dependencies
             inputs:
               command: custom
-              customCommand: ci
+              customCommand: ci --ignore-scripts
         
+          - task: Npm@1
+            displayName: Linter checks
+            inputs:
+              command: custom
+              customCommand: run ci:lint
+
+          - task: PublishTestResults@2
+            condition: succeededOrFailed()
+            displayName: Publish linter results
+            inputs:
+              testRunner: JUnit
+              testResultsFiles: '**/lint-results.xml'
+              testRunTitle: ${{variables.name}}-lint-results
+
           - bash: | 
               export NOCK_BACK_MODE=lockdown
-              npm run test:ci
+              npm run ci:test
             displayName: Run unit tests
-        
+
           - task: PublishTestResults@2
             condition: succeededOrFailed()
             displayName: Publish unit tests

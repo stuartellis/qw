@@ -7,12 +7,13 @@
     "qw": "./bin/qw.js"
   },
   "scripts": {
-    "clean": "rimraf .nyc_output coverage docs test-results.xml tmp",
+    "clean": "rimraf .nyc_output coverage docs lint-results.xml test-results.xml tmp",
     "doc": "jsdoc -c jsdoc.json",
     "prepare": "husky install",
     "pretest": "eslint --ignore-path .gitignore .",
     "test": "mocha 'test/**/*.test.js' --timeout 5000",
-    "test:ci": "nyc --reporter=cobertura mocha 'test/**/*.test.js' --timeout 5000 --reporter mocha-junit-reporter"
+    "ci:lint": "eslint --ignore-path .gitignore . -o lint-results.xml -f junit",
+    "ci:test": "nyc --reporter=cobertura mocha 'test/**/*.test.js' --timeout 5000 --reporter mocha-junit-reporter"
   },
   "engines": {
     "node": ">=12.0.0"

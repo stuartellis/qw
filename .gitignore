@@ -9,6 +9,7 @@ lerna-debug.log*
 # Generated files
 .nyc_output
 docs
+lint-results.xml
 test-results.xml
 tmp
 
