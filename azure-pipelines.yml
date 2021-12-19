@@ -30,7 +30,8 @@ stages:
           - task: Npm@1
             displayName: Install dependencies
             inputs:
-              command: install
+              command: custom
+              customCommand: ci
         
           - bash: | 
               export NOCK_BACK_MODE=lockdown
