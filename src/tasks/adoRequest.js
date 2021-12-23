@@ -22,6 +22,7 @@ async function get(userToken, urlTemplate, templateValues, onError, onSuccess) {
   const adoKey = pat.encode(userToken);
   const adoConnector = restClient.create(adoKey);
   adoConnector.interceptors.response.use(onSuccess, onError);
+  console.log(queryUrl.toString());
   return adoConnector.get(queryUrl.toString());
 }
 

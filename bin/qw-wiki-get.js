@@ -12,21 +12,30 @@ const { timestamp } = require('../src/formats');
 const { ConsoleLogger } = require('../src/logger');
 const { adoRequest, logMessage, output } = require('../src/tasks');
 
-const adoResourceTypes = Object.keys(adoMappings.resource.get);
-
 const program = new Command();
 
 async function run() {
-  const options = program.opts();
   const logger = new ConsoleLogger(console);
 
-  const resourceType = options.type;
+  const options = program.opts();
+  const itemId = options.id; 
+  const resourceType = 'wikipage';
   const format = options.format;
   let outputPath = options.output;
 
-  const urlTemplate = adoMappings.resource.get[resourceType].index;
-  const resourceTypePlural = adoMappings.resource.get[resourceType].plural;
-  const queryValues = adoService;
+  let wikiId = adoService.defaultWikiId;
+  if (options.wiki) {
+    wikiId = options.wiki;
+  }
+
+  const urlTemplate = adoMappings.wikis[resourceType].item;
+  const resourceTypeIdentifier = adoMappings.wikis[resourceType].identifier;
+  const resourceTypePlural = adoMappings.wikis[resourceType].plural;
+  
+  let queryValues = adoService;
+  queryValues['wikiIdentifier'] = wikiId;
+  queryValues[resourceTypeIdentifier] = itemId;
+  
   const owner = adoService.project;
 
   try {  
@@ -37,21 +46,21 @@ async function run() {
     const response = await adoRequest.get(
       adoPat, urlTemplate, queryValues, 
       adoResponse.checkError, adoResponse.checkSuccess);
-    const items = response.data.value;
-    logMessage.writeItemCount(logger, items, owner, resourceType, resourceTypePlural);
+    const item = response.data;
+    logMessage.writeItem(logger, item, owner, resourceType, resourceTypePlural);
 
     let rootPath = undefined;
 
     if (outputPath) {
       rootPath = path.dirname(outputPath);
     } else {
-      rootPath = path.join(process.cwd(), 'tmp', 'inventories', owner);
-      const fileName = timestamp.fileName(`${owner}-${resourceTypePlural}`, new Date(), format);
+      rootPath = path.join(process.cwd(), 'tmp', 'items', owner, resourceTypePlural);
+      const fileName = timestamp.fileName(`${owner}-${resourceType}-${itemId}`, new Date(), format);
       outputPath = path.join(rootPath, fileName); 
     }
     
     await output.ensureDirectory(logger, rootPath);
-    await output.writeArrayToFile(logger, items, format, outputPath);
+    await output.writeObjectToFile(logger, item, format, outputPath);
   } catch(err) {
     logger.error(err);
     process.exit(1);
@@ -59,8 +68,9 @@ async function run() {
 }
 
 program.addOption(new Option('-f, --format <type>', 'Format of output').choices(['csv', 'json']).default('json', 'json'));
+program.requiredOption('-i, --id <id>', 'ADO ID of item');
 program.option('-o, --output <path>', 'Path and name of output file, e.g. tmp/repos.csv');
-program.addOption(new Option('-t, --type <resource>', 'Type of resource').choices(adoResourceTypes).default('repo', 'repo'));
+program.option('-w, --wiki <wiki-identifier>', 'The unique ID of the Wiki in the project');
 
 program.action(run);
 program.parseAsync(process.argv);

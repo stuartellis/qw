@@ -20,7 +20,7 @@ async function run() {
   const queryName = 'getId';
 
   try {
-    const urlTemplate = adoMappings.rest.get[resourceType].queries[queryName];
+    const urlTemplate = adoMappings.resource.get[resourceType].queries[queryName];
   
     let queryValues = adoService;
     queryValues['buildIds'] = buildIds;

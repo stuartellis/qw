@@ -1,6 +1,6 @@
 {
     "ado": {
-        "rest": {
+        "resource": {
             "get": {
                 "pipeline": {
                     "identifier": "pipelineId",
@@ -33,6 +33,13 @@
         },
         "git": {
             "https": "https://dev.azure.com/{organization}/{project}/_git/{repoName}"
+        },
+        "wikis": {
+            "wikipage": {
+                "identifier": "wikiPageId",
+                "item": "https://dev.azure.com/{organization}/{project}/_apis/wiki/wikis/{wikiIdentifier}/pages/{wikiPageId}?api-version=6.1-preview.1",
+                "plural": "wikipages"
+            }
         },
         "schema": {
             "version": "0.1.0"

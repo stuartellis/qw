@@ -12,6 +12,8 @@ const { timestamp } = require('../src/formats');
 const { ConsoleLogger } = require('../src/logger');
 const { adoRequest, logMessage, output } = require('../src/tasks');
 
+const adoResourceTypes = Object.keys(adoMappings.resource.get);
+
 const program = new Command();
 
 async function run() {
@@ -23,9 +25,9 @@ async function run() {
   const format = options.format;
   let outputPath = options.output;
 
-  const urlTemplate = adoMappings.rest.get[resourceType].item;
-  const resourceTypeIdentifier = adoMappings.rest.get[resourceType].identifier;
-  const resourceTypePlural = adoMappings.rest.get[resourceType].plural;
+  const urlTemplate = adoMappings.resource.get[resourceType].item;
+  const resourceTypeIdentifier = adoMappings.resource.get[resourceType].identifier;
+  const resourceTypePlural = adoMappings.resource.get[resourceType].plural;
   
   let queryValues = adoService;
   queryValues[resourceTypeIdentifier] = itemId;
@@ -64,7 +66,7 @@ async function run() {
 program.addOption(new Option('-f, --format <type>', 'Format of output').choices(['csv', 'json']).default('json', 'json'));
 program.requiredOption('-i, --id <id>', 'ADO ID of item');
 program.option('-o, --output <path>', 'Path and name of output file, e.g. tmp/repos.csv');
-program.addOption(new Option('-t, --type <resource>', 'Type of resource').choices(['release', 'repo', 'pipeline', 'testrun']).default('repo', 'repo'));
+program.addOption(new Option('-t, --type <resource>', 'Type of resource').choices(adoResourceTypes).default('repo', 'repo'));
 
 program.action(run);
 program.parseAsync(process.argv);
