@@ -4,7 +4,8 @@ const { Command } = require('commander');
 const program = new Command();
 
 program
-  .command('get', 'Get individual page');
+  .command('download', 'Download individual page')
+  .command('open', 'Open Wiki page in Web browser');
 
 program.action(() => {
   program.help();

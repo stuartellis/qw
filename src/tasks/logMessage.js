@@ -8,7 +8,10 @@
  * @param {String} singularName - Singular name for an item, e.g. 'object'
 */
 function writeItem(logger, item, owner, singularName) {
-  const itemIdentifier = `${item.name} (ID: ${item.id})`;
+  let itemIdentifier = `ID ${item.id}`;
+  if (item.name) {
+    itemIdentifier = `${item.name} (ID: ${item.id})`;
+  }
   logger.info(`%s ${singularName} ${itemIdentifier} found for ${owner}`);
 }
   

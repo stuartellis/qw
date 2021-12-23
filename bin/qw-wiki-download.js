@@ -21,6 +21,7 @@ async function run() {
   const itemId = options.id; 
   const resourceType = 'wikipage';
   const format = options.format;
+  const pagePath = options.path;
   let outputPath = options.output;
 
   let wikiId = adoService.defaultWikiId;
@@ -28,11 +29,13 @@ async function run() {
     wikiId = options.wiki;
   }
 
-  const urlTemplate = adoMappings.wikis[resourceType].item;
+  const urlTemplate = adoMappings.wikis[resourceType].queries.getByPath;
   const resourceTypeIdentifier = adoMappings.wikis[resourceType].identifier;
   const resourceTypePlural = adoMappings.wikis[resourceType].plural;
   
   let queryValues = adoService;
+  queryValues['includeContent'] = true;
+  queryValues['path'] = pagePath;
   queryValues['wikiIdentifier'] = wikiId;
   queryValues[resourceTypeIdentifier] = itemId;
   
@@ -54,8 +57,8 @@ async function run() {
     if (outputPath) {
       rootPath = path.dirname(outputPath);
     } else {
-      rootPath = path.join(process.cwd(), 'tmp', 'items', owner, resourceTypePlural);
-      const fileName = timestamp.fileName(`${owner}-${resourceType}-${itemId}`, new Date(), format);
+      rootPath = path.join(process.cwd(), 'tmp', 'wikipages', owner, wikiId);
+      const fileName = timestamp.fileName(`${owner}-${resourceType}-${item.id}`, new Date(), format);
       outputPath = path.join(rootPath, fileName); 
     }
     
@@ -68,9 +71,9 @@ async function run() {
 }
 
 program.addOption(new Option('-f, --format <type>', 'Format of output').choices(['csv', 'json']).default('json', 'json'));
-program.requiredOption('-i, --id <id>', 'ADO ID of item');
-program.option('-o, --output <path>', 'Path and name of output file, e.g. tmp/repos.csv');
-program.option('-w, --wiki <wiki-identifier>', 'The unique ID of the Wiki in the project');
+program.option('-o, --output <path>', 'Path and name of output file, e.g. tmp/page.json');
+program.requiredOption('-p, --path <path>', 'Path of page on Wiki, e.g. "/Home Page/SubPage"');
+program.option('-w, --wiki <wiki-identifier>', 'The unique ID of the Wiki');
 
 program.action(run);
 program.parseAsync(process.argv);
