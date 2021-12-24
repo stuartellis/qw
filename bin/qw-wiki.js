@@ -5,8 +5,7 @@ const program = new Command();
 
 program
   .command('download', 'Download individual page')
-  .command('new', 'Create a new page')
-  .command('open', 'Open Wiki page in Web browser');
+  .command('new', 'Create a new page');
 
 program.action(() => {
   program.help();
