@@ -7,6 +7,10 @@ class ConsoleLogger {
     this.logger = logger;
   }
 
+  debug(err) {
+    this.logger.debug(err);    
+  }
+
   error(err) {
     this.logger.error(`%s ${err.message}`, chalk.red('ERR'));    
   }

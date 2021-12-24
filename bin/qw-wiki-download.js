@@ -18,7 +18,6 @@ async function run() {
   const logger = new ConsoleLogger(console);
 
   const options = program.opts();
-  const itemId = options.id; 
   const resourceType = 'wikipage';
   const format = options.format;
   const pagePath = options.path;
@@ -29,18 +28,19 @@ async function run() {
     wikiId = options.wiki;
   }
 
-  const urlTemplate = adoMappings.wikis[resourceType].get.queries.byPath;
-  const resourceTypeIdentifier = adoMappings.wikis[resourceType].identifier;
-  const resourceTypePlural = adoMappings.wikis[resourceType].plural;
-  
-  let queryValues = adoService;
-  queryValues['includeContent'] = true;
-  queryValues['path'] = pagePath;
-  queryValues['wikiIdentifier'] = wikiId;
-  queryValues[resourceTypeIdentifier] = itemId;
-  
   const owner = adoService.project;
+  const resourceTypePlural = adoMappings.wikis[resourceType].plural;
 
+  const urlTemplate = adoMappings.wikis[resourceType].get.queries.byPath;
+  
+  let queryValues = {
+    organization: adoService.organization,
+    project: adoService.project,
+    includeContent: true,
+    path: pagePath,
+    wikiIdentifier: wikiId
+  };
+  
   try {  
     const adoPat = pat.get();
     if (adoPat === null) {

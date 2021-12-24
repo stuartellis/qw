@@ -36,12 +36,14 @@
         },
         "wikis": {
             "wikipage": {
+                "plural": "wikipages",
                 "get": {
-                    "identifier": "wikiPageId",
-                    "plural": "wikipages",
                     "queries": {
                         "byPath": "https://dev.azure.com/{organization}/{project}/_apis/wiki/wikis/{wikiIdentifier}/pages?path={path}&includeContent={includeContent}&api-version=6.1-preview.1"
                     }
+                },
+                "patch": {
+                    "update": "https://dev.azure.com/{organization}/{project}/_apis/wiki/wikis/{wikiIdentifier}/pages/{id}?comment={comment}&api-version=6.1-preview.1"
                 },
                 "put": {
                     "new": "https://dev.azure.com/{organization}/{project}/_apis/wiki/wikis/{wikiIdentifier}/pages?path={path}&comment={comment}&api-version=6.1-preview.1"

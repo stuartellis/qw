@@ -26,6 +26,25 @@ async function get(userToken, urlTemplate, templateValues, onError, onSuccess) {
 }
 
 /**
+ * Runs a HTTP PATCH request for the templated URL, with Azure DevOps authentication.
+ * @param {string} userToken - Personal Access Token (PAT) for Azure DevOps
+ * @param {string} urlTemplate - Template for request URL
+ * @param {Object} templateValues - Values for request URL
+ * @param {Object} body - Body of request
+ * @param {Function} onError - Axios interceptor for response error
+ * @param {Function} onSuccess - Axios interceptor for response success
+ * @return {Promise<AxiosResponse>} Response as a Promise
+ * @param {Object} config - Additional configuration for request
+*/
+async function patch(userToken, urlTemplate, templateValues, body, onError, onSuccess, config) {
+  const queryUrl = urlFmt.fromTemplate(urlTemplate, templateValues);
+  const adoKey = pat.encode(userToken);
+  const adoConnector = restClient.create(adoKey);
+  adoConnector.interceptors.response.use(onSuccess, onError);
+  return adoConnector.patch(queryUrl.toString(), body, config);
+}
+
+/**
  * Runs a HTTP PUT request for the templated URL, with Azure DevOps authentication.
  * @param {string} userToken - Personal Access Token (PAT) for Azure DevOps
  * @param {string} urlTemplate - Template for request URL
@@ -43,4 +62,4 @@ async function put(userToken, urlTemplate, templateValues, body, onError, onSucc
   return adoConnector.put(queryUrl.toString(), body);
 }
 
-module.exports = { get, put };
+module.exports = { get, patch, put };
