@@ -39,6 +39,7 @@ async function run() {
 
     const transport = smtp.getTransport(profile);
     await smtp.sendSmtp(transport, message);
+    logger.info(`%s Sent email from ${message.from} to ${message.from} using ${profile.host} port ${profile.port}`);
 
   } catch(err) {
     logger.error(err);
