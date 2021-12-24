@@ -28,8 +28,12 @@ async function run() {
   const urlTemplate = adoMappings.resource.get[resourceType].item;
   const resourceTypeIdentifier = adoMappings.resource.get[resourceType].identifier;
   const resourceTypePlural = adoMappings.resource.get[resourceType].plural;
-  
-  let queryValues = adoService;
+
+  let queryValues = {
+    organization: adoService.organization,
+    project: adoService.project
+  };
+
   queryValues[resourceTypeIdentifier] = itemId;
   
   const owner = adoService.project;

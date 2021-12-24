@@ -26,8 +26,13 @@ async function run() {
 
   const urlTemplate = adoMappings.resource.get[resourceType].index;
   const resourceTypePlural = adoMappings.resource.get[resourceType].plural;
-  const queryValues = adoService;
+
   const owner = adoService.project;
+
+  const queryValues = {
+    organization: adoService.organization,
+    project: adoService.project
+  };
 
   try {  
     const adoPat = pat.get();
