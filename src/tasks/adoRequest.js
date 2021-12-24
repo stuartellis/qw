@@ -15,14 +15,15 @@ const { url: urlFmt } = require('../formats');
  * @param {Object} templateValues - Values for request URL
  * @param {Function} onError - Axios interceptor for response error
  * @param {Function} onSuccess - Axios interceptor for response success
+ * @param {Object} config - Additional configuration for request
  * @return {Promise<AxiosResponse>} Response as a Promise
 */
-async function get(userToken, urlTemplate, templateValues, onError, onSuccess) {
+async function get(userToken, urlTemplate, templateValues, onError, onSuccess, config) {
   const queryUrl = urlFmt.fromTemplate(urlTemplate, templateValues);
   const adoKey = pat.encode(userToken);
   const adoConnector = restClient.create(adoKey);
   adoConnector.interceptors.response.use(onSuccess, onError);
-  return adoConnector.get(queryUrl.toString());
+  return adoConnector.get(queryUrl.toString(), config);
 }
 
 /**
@@ -33,8 +34,8 @@ async function get(userToken, urlTemplate, templateValues, onError, onSuccess) {
  * @param {Object} body - Body of request
  * @param {Function} onError - Axios interceptor for response error
  * @param {Function} onSuccess - Axios interceptor for response success
- * @return {Promise<AxiosResponse>} Response as a Promise
  * @param {Object} config - Additional configuration for request
+ * @return {Promise<AxiosResponse>} Response as a Promise
 */
 async function patch(userToken, urlTemplate, templateValues, body, onError, onSuccess, config) {
   const queryUrl = urlFmt.fromTemplate(urlTemplate, templateValues);
@@ -52,14 +53,15 @@ async function patch(userToken, urlTemplate, templateValues, body, onError, onSu
  * @param {Object} body - Body of request
  * @param {Function} onError - Axios interceptor for response error
  * @param {Function} onSuccess - Axios interceptor for response success
+ * @param {Object} config - Additional configuration for request
  * @return {Promise<AxiosResponse>} Response as a Promise
 */
-async function put(userToken, urlTemplate, templateValues, body, onError, onSuccess) {
+async function put(userToken, urlTemplate, templateValues, body, onError, onSuccess, config) {
   const queryUrl = urlFmt.fromTemplate(urlTemplate, templateValues);
   const adoKey = pat.encode(userToken);
   const adoConnector = restClient.create(adoKey);
   adoConnector.interceptors.response.use(onSuccess, onError);
-  return adoConnector.put(queryUrl.toString(), body);
+  return adoConnector.put(queryUrl.toString(), body, config);
 }
 
 module.exports = { get, patch, put };

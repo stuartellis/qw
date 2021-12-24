@@ -15,11 +15,12 @@ describe('adoRequest#get()', function() {
     const templateValues = adoService;
     const onError = (err) => { return Promise.reject(err); };
     const onSuccess = (resp) => { return resp; };
+    const extraConfig = {};
 
     nockBack.fixtures = path.join(__dirname, 'fixtures', 'nock', 'adoRest');
 
     return nockBack('pipeline-inventory.json').then(({ nockDone }) => {
-      return adoRequest.get(userToken, urlTemplate, templateValues, onError, onSuccess)
+      return adoRequest.get(userToken, urlTemplate, templateValues, onError, onSuccess, extraConfig)
         .then((resp) => {
           return assert.strictEqual(resp.status, 200);
         }).then(nockDone);
@@ -32,11 +33,12 @@ describe('adoRequest#get()', function() {
     const templateValues = adoService;
     const onError = (err) => { return Promise.reject(err); };
     const onSuccess = (resp) => { return resp; };
+    const extraConfig = {};
 
     nockBack.fixtures = path.join(__dirname, 'fixtures', 'nock', 'adoRest');
 
     return nockBack('release-inventory.json').then(({ nockDone }) => {
-      return adoRequest.get(userToken, urlTemplate, templateValues, onError, onSuccess)
+      return adoRequest.get(userToken, urlTemplate, templateValues, onError, onSuccess, extraConfig)
         .then((resp) => {
           return assert.strictEqual(resp.status, 200);
         }).then(nockDone);
@@ -49,11 +51,12 @@ describe('adoRequest#get()', function() {
     const templateValues = adoService;
     const onError = (err) => { return Promise.reject(err); };
     const onSuccess = (resp) => { return resp; };
+    const extraConfig = {};
 
     nockBack.fixtures = path.join(__dirname, 'fixtures', 'nock', 'adoRest');
 
     return nockBack('repo-inventory.json').then(({ nockDone }) => {
-      return adoRequest.get(userToken, urlTemplate, templateValues, onError, onSuccess)
+      return adoRequest.get(userToken, urlTemplate, templateValues, onError, onSuccess, extraConfig)
         .then((resp) => {
           return assert.strictEqual(resp.status, 200);
         }).then(nockDone);
