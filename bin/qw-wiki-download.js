@@ -29,7 +29,7 @@ async function run() {
     wikiId = options.wiki;
   }
 
-  const urlTemplate = adoMappings.wikis[resourceType].queries.getByPath;
+  const urlTemplate = adoMappings.wikis[resourceType].get.queries.byPath;
   const resourceTypeIdentifier = adoMappings.wikis[resourceType].identifier;
   const resourceTypePlural = adoMappings.wikis[resourceType].plural;
   

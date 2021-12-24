@@ -25,7 +25,7 @@ async function run() {
   const urlTemplate = adoMappings.git.https;
 
   try {
-    const content = await fs.readFile(inventory, { encoding: 'utf8' });
+    const content = await fs.readFile(inventory, { encoding: 'utf-8' });
     const data = JSON.parse(content);
 
     logger.info(`%s Reading inventory ${inventory}`);
