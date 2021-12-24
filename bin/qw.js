@@ -4,7 +4,7 @@ const { Command } = require('commander');
 const program = new Command();
 
 program
-  .version('0.4.0', '-v, --version')
+  .version('0.7.0', '-v, --version')
   .description('Command-line tool for operations');
 
 program
