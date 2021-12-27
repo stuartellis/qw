@@ -12,7 +12,7 @@ const { stringer } = require('../serialize');
 /**
  * Ensures that directory exists.
  * @param {Object} logger - Logger
- * @param {String} fullPath - Full path for directory
+ * @param {string} fullPath - Full path for directory
 */
 async function ensureDirectory(logger, fullPath) {
   const dirResult = await fs.mkdir(fullPath, { recursive: true });
@@ -30,8 +30,8 @@ async function ensureDirectory(logger, fullPath) {
  * Writes Array of Objects to a file.
  * @param {Object} logger - Logger
  * @param {Array<Object>} items - Items
- * @param {String} format - Text format, e.g. 'json'
- * @param {String} outputPath - Full path where the file will be created, including the file name
+ * @param {string} format - Text format, e.g. 'json'
+ * @param {string} outputPath - Full path where the file will be created, including the file name
 */
 async function writeArrayToFile(logger, items, format, outputPath) {
   const content = stringer.fromArray(format, items);
@@ -43,8 +43,8 @@ async function writeArrayToFile(logger, items, format, outputPath) {
  * Writes Handlebars template to a file.
  * @param {Object} logger - Logger
  * @param {Object} data - Object containing the source data
- * @param {String} templateContent - The template as a string
- * @param {String} outputPath - Full path where the file will be created, including the file name
+ * @param {string} templateContent - The template as a string
+ * @param {string} outputPath - Full path where the file will be created, including the file name
 */
 async function writeHbTemplateToFile(logger, data, templateContent, outputPath) {
   const template = hbTemplate.compileTemplate(templateContent);
@@ -57,8 +57,8 @@ async function writeHbTemplateToFile(logger, data, templateContent, outputPath) 
  * Writes Object to a file.
  * @param {Object} logger - Logger
  * @param {Object} item - Item
- * @param {String} format - Text format, e.g. 'json'
- * @param {String} outputPath - Full path where the file will be created, including the file name
+ * @param {string} format - Text format, e.g. 'json'
+ * @param {string} outputPath - Full path where the file will be created, including the file name
 */
 async function writeObjectToFile(logger, item, format, outputPath) {
   const content = stringer.fromObject(format, item);

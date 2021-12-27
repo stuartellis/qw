@@ -11,8 +11,8 @@ const simpleGit = require('simple-git');
 
 /**
  * Clones local copy of Git repository.
- * @param {String} sourceRepo - Address of remote Git repository
- * @param {String} parentPath - Local path for parent directory
+ * @param {string} sourceRepo - Address of remote Git repository
+ * @param {string} parentPath - Local path for parent directory
 */
 async function clone(sourceRepo, parentPath) { 
   const git = new simpleGit();
@@ -22,9 +22,9 @@ async function clone(sourceRepo, parentPath) {
 
 /**
  * Creates or updates local copy of Git repository.
- * @param {String} name - Name of Git repository
- * @param {String} sourceRepo - Address of remote Git repository
- * @param {String} parentPath - Local path for parent directory
+ * @param {string} name - Name of Git repository
+ * @param {string} sourceRepo - Address of remote Git repository
+ * @param {string} parentPath - Local path for parent directory
 */
 async function sync(name, sourceRepo, parentPath) {
   const localPath = path.join(parentPath, name); 
@@ -50,7 +50,7 @@ async function sync(name, sourceRepo, parentPath) {
 
 /**
  * Runs Git pull to update local copy of repository.
- * @param {String} localPath - Local path for repository
+ * @param {string} localPath - Local path for repository
 */
 async function pull(localPath) {  
   const git = new simpleGit();

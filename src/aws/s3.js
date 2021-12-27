@@ -47,8 +47,8 @@ async function bucketStatus(client, bucketName) {
  * Lists all of the objects in an S3 bucket.
  * This handles pagination.
  * @param {S3} client - AWS SDK S3 client
- * @param {String} bucketName - Name of S3 bucket
- * @param {String} data - Previous list of objects
+ * @param {string} bucketName - Name of S3 bucket
+ * @param {string} data - Previous list of objects
  * @param {} continuationToken - AWS request token for paginated request
  * @return {Array} List of objects
 */

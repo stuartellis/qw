@@ -32,8 +32,8 @@ async function listStacks(client, statuses) {
  * Lists all of the resources in a CFN stack.
  * This handles pagination.
  * @param {CloudFormationClient} client - AWS SDK CFN client
- * @param {String} stackName - Name of CFN stack
- * @param {String} data - Previous list of resources
+ * @param {string} stackName - Name of CFN stack
+ * @param {string} data - Previous list of resources
  * @param {} continuationToken - AWS request token for paginated request
  * @return {Array} List of resources
 */

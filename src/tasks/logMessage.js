@@ -4,8 +4,8 @@
  * Log item.
  * @param {Object} logger - Logger
  * @param {Object} item - Item
- * @param {String} owner - The name of the account or category that the items belong to
- * @param {String} singularName - Singular name for an item, e.g. 'object'
+ * @param {string} owner - The name of the account or category that the items belong to
+ * @param {string} singularName - Singular name for an item, e.g. 'object'
 */
 function writeItem(logger, item, owner, singularName) {
   let itemIdentifier = `ID ${item.id}`;
@@ -19,9 +19,9 @@ function writeItem(logger, item, owner, singularName) {
    * Log number of items.
    * @param {Object} logger - Logger
    * @param {Array<Object>} items - Items
-   * @param {String} owner - The name of the account or category that the items belong to
-   * @param {String} singularName - Singular name for an item, e.g. 'object'
-   * @param {String} pluralName - Plural for items, e.g. 'objects'
+   * @param {string} owner - The name of the account or category that the items belong to
+   * @param {string} singularName - Singular name for an item, e.g. 'object'
+   * @param {string} pluralName - Plural for items, e.g. 'objects'
   */
 function writeItemCount(logger, items, owner, singularName, pluralName) {
   switch (items.length) {

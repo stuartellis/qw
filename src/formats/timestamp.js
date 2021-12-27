@@ -7,7 +7,7 @@
 /**
  * Returns a timestamp string from a Date object.
  * @param {Date} dt - Date 
- * @param {String} separator - Separator character 
+ * @param {string} separator - Separator character 
  * @return {string} Timestamp
 */
 function fromDate(dt, separator='') {
@@ -22,9 +22,9 @@ function fromDate(dt, separator='') {
 
 /**
  * Returns a file name with the timestamp.
- * @param {String} prefix - Prefix for file name
+ * @param {string} prefix - Prefix for file name
  * @param {Date} dt - Date object for timestamp
- * @param {String} extension - File extension
+ * @param {string} extension - File extension
  * @return {String} File name
 */
 function fileName(prefix, dt, extension) {

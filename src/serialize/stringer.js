@@ -10,7 +10,7 @@ const { csv } = require('../formats');
 
 /**
  * Converts arrays of JavaScript Objects to string formats.
- * @param {String} type - 'csv' or 'json'
+ * @param {string} type - 'csv' or 'json'
  * @param {Array<Object>} items - Array of Objects
  * @return {String} Objects as String in the specified format
 */
@@ -27,7 +27,7 @@ function fromArray(type, items) {
 
 /**
  * Converts Object to string formats.
- * @param {String} type - 'csv' or 'json'
+ * @param {string} type - 'csv' or 'json'
  * @param {Object} item - Object
  * @return {String} Object as String in the specified format
 */
