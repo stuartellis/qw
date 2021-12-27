@@ -65,7 +65,7 @@ async function run() {
 }
 
 program.option('-c, --comment <text>', 'Comment for Wiki change');
-program.requiredOption('-p, --path <path>', 'Path of page on Wiki, e.g. "/Home Page/SubPage"');
+program.requiredOption('-p, --path <path>', 'Path of page on Wiki, e.g. "/Home Page/First Page"');
 program.requiredOption('-s, --source <path>', 'Path and name of file containing the content for the page, e.g. tmp/source/content.txt');
 program.option('-w, --wiki <wiki-identifier>', 'The unique ID of the Wiki');
 
